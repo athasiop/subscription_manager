@@ -160,14 +160,14 @@ class UserProfilePage(tk.Frame):
         frame = self.frames[SupportTicketList]
         frame.RefreshList()
         frame.tkraise()
-    def UpdateProfile(self,user_info):                 
-        self.user_info = user_info
-        tk.Label(self,text=user_info["user_name"]).grid(row=0,column=1)
-        tk.Label(self,text=user_info["birth_date"]).grid(row=1,column=1)
-        tk.Label(self,text=user_info["email"]).grid(row=2,column=1)
-        tk.Label(self,text=user_info["country"]).grid(row=3,column=1)
-        tk.Label(self,text=user_info["zip_code"]).grid(row=4,column=1)
-        tk.Label(self,text=user_info["street"]).grid(row=5,column=1)
+    def UpdateProfile(self):                 
+        
+        tk.Label(self,text=self.user_info["user_name"]).grid(row=0,column=1)
+        tk.Label(self,text=self.user_info["birth_date"]).grid(row=1,column=1)
+        tk.Label(self,text=self.user_info["email"]).grid(row=2,column=1)
+        tk.Label(self,text=self.user_info["country"]).grid(row=3,column=1)
+        tk.Label(self,text=self.user_info["zip_code"]).grid(row=4,column=1)
+        tk.Label(self,text=self.user_info["street"]).grid(row=5,column=1)
         
     def logout(self):
         frame = self.frames[LoginPage]
@@ -210,7 +210,7 @@ class LoginPage(tk.Frame):
             #TODO add age
             
             frame = self.frames[UserProfilePage]
-            frame.UpdateProfile(self.user_info)
+            frame.UpdateProfile()
             frame.tkraise()
         except:
             tk.Label(self,text="User Not Found",bg="red").grid(row=3,column=0)
@@ -281,7 +281,7 @@ class SignUpPage(tk.Frame):
                 print("Can't find user_id")
             
             frame = self.frames[UserProfilePage]
-            frame.UpdateProfile(self.user_info)
+            frame.UpdateProfile()
             frame.tkraise()
         except:
             print("invalid input")   

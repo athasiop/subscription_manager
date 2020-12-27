@@ -140,7 +140,7 @@ def cancelPlan(serviceName):
     planType = planType[1:]
     print(bundleID)
     if not bundleID == "' '":
-        tk.messagebox.showinfo(title = "Canceling from bundle", message = "You cannot cancel a plan that is included in a purchased bundle")
+        tk.messagebox.showinfo(title = "Canceling from bundle", message = "You cannot cancel a plan that was included in a purchased bundle")
     else:
         if tk.messagebox.askquestion(title = "Canceling plan", message = "Are you sure you want to cancel " + serviceName) == "yes":
             sqlPlanID = "Select user_buys_subscription_plan.plan_id from " + \

@@ -21,7 +21,7 @@ user_info = {
     "street":""
     }
 
-db = sql.connect("46.12.85.152","user","pass","subscription_manager",autocommit=True)
+db = sql.connect("127.0.0.1","user","pass","subscription_manager",autocommit=True)
 cur = db.cursor()
 
 

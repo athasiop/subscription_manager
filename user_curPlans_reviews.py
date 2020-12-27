@@ -175,12 +175,9 @@ lblActPlans = tk.Label(userWindow,text = "Active Subscriptions")
 btnReviewPlan = tk.Button(userWindow, text = "Review Service", 
                            command= lambda: checkReview())
 
-lblReviews = tk.Label(userWindow, text = "Reviews")
+lblReviews = tk.Label(userWindow, text = "Reviews (double click to see comment or update review)")
 
 lblActUser = tk.Label(userWindow, text = "")
-
-
-
 
 
 sqlUser = "SELECT user_name, email from user where user_id = " + str(currUserID)

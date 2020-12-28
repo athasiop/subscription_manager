@@ -204,8 +204,7 @@ class CompanyPlans(tk.Frame):
                 
                 updatePlanWindow.destroy()
                 
-                
-                
+                            
         
 db = sql.connect("127.0.0.1","company","comp","subscription_manager",autocommit=True) #46.12.85.152
 cur = db.cursor()   

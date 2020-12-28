@@ -94,7 +94,7 @@ class CompanyPlans(tk.Frame):
         cur.execute(sqlCurNumUsers)
         resSqlCurNumUsers = cur.fetchone()
         strX = str(resSqlCurNumUsers).replace("(", "").replace(")", "").replace(",", "")
-        tk.Label(self, text = "Current Users: " + strX).grid(row = 0, column = 1, stick = "nsew")
+        tk.Label(self, text = "Total Current Users: " + strX).grid(row = 0, column = 1, stick = "nsew")
         self.treePlans.bind("<Double-Button-1>", self.pop_update_window)
 
 

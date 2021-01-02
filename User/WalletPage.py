@@ -8,6 +8,7 @@ import tkinter as tk
 from tkinter import ttk
 
 
+
 class WalletPage(tk.Frame):
     
      def __init__(self, parent, cur,user_info, frames):
@@ -16,12 +17,14 @@ class WalletPage(tk.Frame):
         self.frames=frames
         self.user_info = user_info
         
+        
 
         tk.Label(self,text="How much money do you want to add?").grid(row=1,column=1)
         moneyToAdd=tk.Entry(self)
         moneyToAdd.grid(row=1,column=2)
         add_button=ttk.Button(self, text="Add", command=lambda: self.addMoney(str(moneyToAdd.get())))
         add_button.grid(row=2,column=2)
+        
         
         
      def addMoney(self, money):

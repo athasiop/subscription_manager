@@ -20,28 +20,36 @@ class UserProfilePage(tk.Frame):
         
         createToolbar(self, frames)
         
-        img = Image.open("edit.png")
-        newImg = img.resize((20,20))
-        self.photo = ImageTk.PhotoImage(newImg) 
+        imgSize = 20, 20
+        imgEdit = Image.open("edit.png")
+        imgDelete = Image.open("delete.png")
+        imgUpdate = Image.open("update.png")
+        newImgEdit = imgEdit.resize(imgSize)
+        newImgDelete = imgDelete.resize(imgSize)
+        newImgUpdate = imgUpdate.resize(imgSize)
+        self.photoEdit = ImageTk.PhotoImage(newImgEdit) 
+        self.photoDelete = ImageTk.PhotoImage(newImgDelete)
+        self.photoUpdate = ImageTk.PhotoImage(newImgUpdate)
+        
          
         #TODO Edit image
-        tk.Label(self,text="Username = ").grid(row=1, column = 0)
-        tk.Button(self, image = self.photo, command=self.editName).grid(row=1, column=2, sticky = tk.W)
+        tk.Label(self,text="Username = ").grid(row=1, column = 0, pady = 30)
+        tk.Button(self, image = self.photoEdit, command=self.editName).grid(row=1, column=2, sticky = tk.W)
         
         tk.Label(self,text="Birth Date").grid(row=2, column = 0)
         tk.Label(self,text="Email = ").grid(row=3, column = 0)
-        tk.Button(self, image = self.photo, command=self.editEmail).grid(row=3, column=2, sticky = tk.W)
+        tk.Button(self, image = self.photoEdit, command=self.editEmail).grid(row=3, column=2, sticky = tk.W)
         tk.Label(self,text="Country = ").grid(row=4, column = 0)
-        tk.Button(self, image = self.photo, command=self.editCountry).grid(row=4, column=2, sticky = tk.W)
+        tk.Button(self, image = self.photoEdit, command=self.editCountry).grid(row=4, column=2, sticky = tk.W)
         tk.Label(self,text="Zip Code = ").grid(row=5, column = 0)
-        tk.Button(self, image = self.photo, command=self.editZipCode).grid(row=5, column=2, sticky = tk.W)
+        tk.Button(self, image = self.photoEdit, command=self.editZipCode).grid(row=5, column=2, sticky = tk.W)
         tk.Label(self,text="Street = ").grid(row=6, column = 0)
-        tk.Button(self, image = self.photo, command=self.editStreet).grid(row=6, column=2, sticky = tk.W)
-        ttk.Button(self,text="Delete Account",command=self.delete_user).grid(row=8,column=1, sticky = tk.W)
+        tk.Button(self, image = self.photoEdit, command=self.editStreet).grid(row=6, column=2, sticky = tk.W)
+        ttk.Button(self,text="Delete Account",image = self.photoDelete, compound = tk.RIGHT,command=self.delete_user).grid(row=8,column=1, sticky = tk.W)
         ttk.Button(self,text="Show Current Plans",command=self.show_current_plans).grid(row=8,column=0)
-        self.update_button = ttk.Button(self,text="Update Info",command=self.update_info)
+        self.update_button = ttk.Button(self,text="Update Info",image = self.photoUpdate, compound = tk.RIGHT, command=self.update_info)
         self.update_button.configure(state="disabled")
-        self.update_button.grid(row=8,column=2, sticky = tk.W)
+        self.update_button.grid(row=8,column=2, pady = 20, sticky = tk.W)
         
 #Show money        
     def show(self):

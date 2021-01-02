@@ -26,6 +26,7 @@ class tkinterApp(tk.Tk):
          
         # __init__ function for class Tk 
         tk.Tk.__init__(self) 
+        self.title("Subscription Manager")
         self.cur=cur
         self.user_info=user_info
         # creating a container 

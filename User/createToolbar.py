@@ -33,7 +33,7 @@ def createToolbar(self, frames):
     ttk.Button(toolbarFrame,text = "Log Out",image = toolbarFrame.photoLogout, compound = tk.RIGHT, command=self.logout).grid(row=0,column=4, padx = 50)
     toolbarFrame.grid(row = 0, column = 0, rowspan = 1, columnspan = 5)
     
-    def main_menu(self):        
+    def main_menu(self): 
         frame = self.frames["Wallet"]
         frame.grid(row = 1, column = 0)
         frame.show()

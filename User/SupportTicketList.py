@@ -7,6 +7,7 @@ Created on Sun Dec 27 23:09:11 2020
 import tkinter as tk
 from tkinter import ttk
 from createToolbar import createToolbar
+from PIL import Image, ImageTk
 
 class SupportTicketList(tk.Frame):
      
@@ -16,11 +17,18 @@ class SupportTicketList(tk.Frame):
         self.frames = frames
         self.cur = cur
         
+        imgSize = 30, 30
+        imgNewTicket = Image.open("newTicket.png")
+        #imgPaymentMethods = Image.open("payment.png")
+        newImgNewTicket = imgNewTicket.resize(imgSize)
+        #newImgPaymentMethods = imgPaymentMethods.resize(imgSize)
+        self.photoAddImgNewTicket = ImageTk.PhotoImage(newImgNewTicket)
+        #self.photoPaymentMethods = ImageTk.PhotoImage(newImgPaymentMethods)
+        
         self.labels = []
         tk.Label(self,text="Questions").grid(row=1,column=0)
         tk.Label(self,text="Answers").grid(row=1,column=1)
-        self.new_support_ticket_button = ttk.Button(self,text="Send New Support Ticket",command = self.send_support_ticket)
-        self.return_to_profile_button = ttk.Button(self,text="Return To Profile",command = self.return_to_profile)
+        self.new_support_ticket_button = ttk.Button(self,text="New Ticket", image = self.photoAddImgNewTicket, compound = tk.RIGHT, command = self.send_support_ticket)
         createToolbar(self, frames)
 
      def RefreshList(self):
@@ -30,7 +38,6 @@ class SupportTicketList(tk.Frame):
         self.select_support_ticket("answer",1)
                 
         self.new_support_ticket_button.grid(row=k)
-        self.return_to_profile_button.grid(row=k,column=1)
         
      def select_support_ticket(self,returnval,col):
               
@@ -55,12 +62,6 @@ class SupportTicketList(tk.Frame):
          for i in self.labels:
           i.destroy()
          
-         frame.tkraise()
-         
-     def return_to_profile(self):
-         frame = self.frames["UserProfilePage"]
-         for i in self.labels:
-          i.destroy()
          frame.tkraise()
      
      def main_menu(self):        

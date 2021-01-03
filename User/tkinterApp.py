@@ -1,12 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 27 23:18:34 2020
-
-@author: Thanasis
-"""
 import tkinter as tk
 
-from MainMenu import Wallet
+from Wallet import Wallet
 from WalletPage import WalletPage
 from BuyPlan import BuyPlan
 from PaymentMethod import PaymentMethod

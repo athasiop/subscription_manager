@@ -1,22 +1,18 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 27 23:12:48 2020
-
-@author: Thanasis
-"""
 import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage, RIGHT
+from tkinter import messagebox
 from createToolbar import createToolbar
 from PIL import Image, ImageTk
 
 class UserProfilePage(tk.Frame):
     
-    def __init__(self, parent,cur,user_info,frames):         
+    def __init__(self,parent,cur,user_info,frames):         
         tk.Frame.__init__(self, parent)        
         self.user_info = user_info
         self.cur = cur
         self.frames = frames
+        
         
         createToolbar(self, frames)
         
@@ -181,7 +177,7 @@ class UserProfilePage(tk.Frame):
         return t
     
     def delete_user(self):
-        response = tk.messagebox.askyesno("Account Deletion","Are you sure you want to delete you account?")
+        response = messagebox.askyesno("Account Deletion","Are you sure you want to delete you account?")
         if response:
             #delete him and return to login
             instr = "DELETE FROM payment_method where user_id="+str(self.user_info["user_id"])

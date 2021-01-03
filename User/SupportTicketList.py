@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 27 23:09:11 2020
-
-@author: Thanasis
-"""
 import tkinter as tk
 from tkinter import ttk
 from createToolbar import createToolbar

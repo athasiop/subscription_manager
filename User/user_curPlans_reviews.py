@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Dec 25 13:32:37 2020
-
-@author: Thanasaras
-"""
-
-
 import datetime
 import tkinter as tk
 from createToolbar import createToolbar
 from tkinter import ttk
 from PIL import Image, ImageTk
+from tkinter import messagebox
 
 
 
@@ -148,7 +141,7 @@ class CurrentPlans(tk.Frame):
             existReview = self.cur.fetchall()
             existReview = str(existReview).replace('(', '').replace(')', '').replace(",",'')
             if not existReview == "":
-                tk.messagebox.showinfo(title = "Already reviewed", message = "You have already reviewed this service. If you want to update your opinion, please double click on" + \
+                messagebox.showinfo(title = "Already reviewed", message = "You have already reviewed this service. If you want to update your opinion, please double click on" + \
                                           " the review")
             else:
                 reviewWindow = tk.Toplevel(self)
@@ -173,7 +166,7 @@ class CurrentPlans(tk.Frame):
             
                     
         def submitReview(self, serviceName, reviewText, reviewWindow, cbReviewRating):
-            msgBox = tk.messagebox.askquestion ('Submitting Review','Are you sure you want to submit this review?',icon = 'warning')
+            msgBox = messagebox.askquestion ('Submitting Review','Are you sure you want to submit this review?',icon = 'warning')
             if msgBox == "yes":
                 sqlReview = "Insert into user_reviews_service(service_name, user_id, comment, rating, review_date) " + \
                 "VALUES ('" + serviceName + "', " + str(self.user_info["user_id"]) + ", '" + reviewText.get("1.0", 'end-1c') + "', " + cbReviewRating.get() + ", '" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+ "')"
@@ -215,7 +208,7 @@ class CurrentPlans(tk.Frame):
             updateReviewWindow.mainloop()
             
         def deleteReview(self, serviceName, updateReviewWindow):
-            if tk.messagebox.askquestion(title = "Deleting Review", message = "Are you sure you want to delete this review") == 'yes':
+            if messagebox.askquestion(title = "Deleting Review", message = "Are you sure you want to delete this review") == 'yes':
                 sqlDeleteReview = "Delete from user_reviews_service where service_name = " + "'" + serviceName + "'"
                 self.cur.execute(sqlDeleteReview)
                 sqlReview = "SELECT service_name, comment, rating, review_date FROM user_reviews_service where user_id = " + str(self.user_info["user_id"])
@@ -232,7 +225,7 @@ class CurrentPlans(tk.Frame):
                 updateReviewWindow.destroy()
           
         def updateReview(self, serviceName, textUpdateReview, updateReviewRating, updateReviewWindow):
-             if tk.messagebox.askquestion(title = "Updating Review", message = "Are you sure you want to update this review") == 'yes':  
+             if messagebox.askquestion(title = "Updating Review", message = "Are you sure you want to update this review") == 'yes':  
                 sqlUpdateReview = "update user_reviews_service set comment = '" + textUpdateReview.get("1.0", 'end-1c')  + "', rating = " + \
                 updateReviewRating.get() + " where service_name = '" + serviceName + "'"
                 self.cur.execute(sqlUpdateReview)
@@ -258,7 +251,7 @@ class CurrentPlans(tk.Frame):
             if not serviceName == "":
                 self.cancelPlan(serviceName)
             else:
-                tk.messagebox.showerror(title = "Select service", message = "Please select a service to cancel")
+                messagebox.showerror(title = "Select service", message = "Please select a service to cancel")
           
         def cancelPlan(self, serviceName):
             curReview = self.treePlans.focus()
@@ -269,9 +262,9 @@ class CurrentPlans(tk.Frame):
             planType = planType[1:]
             print(bundleID)
             if not bundleID == "' '":
-                tk.messagebox.showinfo(title = "Canceling from bundle", message = "You cannot cancel a plan that was included in a purchased bundle")
+                messagebox.showinfo(title = "Canceling from bundle", message = "You cannot cancel a plan that was included in a purchased bundle")
             else:
-                if tk.messagebox.askquestion(title = "Canceling plan", message = "Are you sure you want to cancel " + serviceName) == "yes":
+                if messagebox.askquestion(title = "Canceling plan", message = "Are you sure you want to cancel " + serviceName) == "yes":
                     sqlPlanID = "Select user_buys_subscription_plan.plan_id from " + \
                     "user_buys_subscription_plan join subscription_plan " +\
                     "on user_buys_subscription_plan.plan_id = subscription_plan.plan_id and " +\
@@ -329,7 +322,7 @@ class CurrentPlans(tk.Frame):
             if not serviceName == "":
                 self.reviewPlan(serviceName)
             else:
-                tk.messagebox.showerror(title = "Select service", message = "Please select a service to review")
+                messagebox.showerror(title = "Select service", message = "Please select a service to review")
         
         #TOOLBAR        
         def show_buyPlan(self):

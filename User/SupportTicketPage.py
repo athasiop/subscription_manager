@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 27 23:10:10 2020
-
-@author: Thanasis
-"""
 import tkinter as tk
 from tkinter import ttk
 from tkinter import Text
@@ -23,7 +17,6 @@ class SupportTicketPage(tk.Frame):
         
     def send_ticket(self):
         question = self.questionEntry.get("1.0",tk.END)
-        print(str(question))
         instr = "INSERT INTO support_ticket (user_id,question)VALUES('"+str(self.user_info["user_id"])+"','"+str(question)+"')"
         self.questionEntry.delete('1.0',tk.END)
         try:

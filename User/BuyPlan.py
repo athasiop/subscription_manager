@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 27 22:09:27 2020
-
-@author: Thanasis
-"""
 import tkinter as tk
 from tkinter import ttk
 import datetime
 from createToolbar import createToolbar
+from tkinter import messagebox
 
 class BuyPlan(tk.Frame): 
       
@@ -68,13 +63,24 @@ class BuyPlan(tk.Frame):
          selectedRow = self.tree.item(curReview)
          service_name = str(selectedRow).split(", ")[2].split("'")[3]
          plan_id=str(selectedRow).split(", ")[6].split("]")[0]
-         MsgBox = tk.messagebox.askquestion ('Attention','Are you sure you want to buy this plan?')
+         price=str(selectedRow).split(", ")[4].split("'")[1].replace("€","")
+         MsgBox = messagebox.askquestion ('Attention','Are you sure you want to buy this plan?')
          if MsgBox=='yes':
               try:
-                 instr="INSERT INTO user_buys_subscription_plan (user_id, plan_id, service_name, plan_purchase_date) VALUES ("+str(self.user_info["user_id"])+"," +plan_id+ ", '" +service_name+ "','" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"')"
+                 instr="SELECT * FROM wallet WHERE user_id="+str(self.user_info["user_id"])
                  self.cur.execute(instr)
+                 record=self.cur.fetchone()
+                 currMoney=record[0]
+                 newMoney=float(currMoney)-float(price)
+                 if (newMoney<0):
+                     messagebox.showinfo("Warning", "Not enough money")
+                 else:
+                     instr="INSERT INTO user_buys_subscription_plan (user_id, plan_id, service_name, plan_purchase_date) VALUES ("+str(self.user_info["user_id"])+"," +plan_id+ ", '" +service_name+ "','" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"')"
+                     self.cur.execute(instr)
+                     instr="UPDATE wallet SET money="+str(newMoney)+" WHERE user_id="+str(self.user_info["user_id"])
+                     self.cur.execute(instr)
               except:
-                  tk.messagebox.showinfo("Warning", "You already own this plan")
+                  messagebox.showinfo("Warning", "You already own this plan")
         
     #TOOLBAR        
     def show_buyPlan(self):

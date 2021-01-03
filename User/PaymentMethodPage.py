@@ -1,10 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Dec 27 23:08:36 2020
-
-@author: Thanasis
-"""
 import tkinter as tk
+from tkinter import messagebox
 
 class PaymentMethodPage(tk.Frame):    
     
@@ -41,7 +36,7 @@ class PaymentMethodPage(tk.Frame):
                     self.cur.execute(instr)
                 k=k+1  
         except:
-            tk.messagebox.showinfo("Warning", "You already have this payment method")
+            messagebox.showinfo("Warning", "You already have this payment method")
         frame=self.frames["PaymentMethod"]
         frame.show() 
         frame.tkraise() 

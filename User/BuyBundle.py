@@ -1,12 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Jan  2 16:50:51 2021
-
-@author: johni
-"""
-
 import tkinter as tk
 from tkinter import ttk
+from tkinter import messagebox
 import datetime
 from createToolbar import createToolbar
 
@@ -80,14 +74,24 @@ class BuyBundle(tk.Frame):
          curReview = self.tree.focus()
          selectedRow = self.tree.item(curReview)
          bundle_id=str(selectedRow).split(", ")[0].split("'")[3]
-         MsgBox = tk.messagebox.askquestion ('Attention','Are you sure you want to buy this bundle?')
+         price=str(selectedRow).split(", ")[5].split("'")[1]
+         MsgBox = messagebox.askquestion ('Attention','Are you sure you want to buy this bundle?')
          if MsgBox=='yes':
               try:
-                 instr="INSERT INTO user_buys_bundle (user_id, bundle_id, bundle_purchase_date) VALUES ("+str(self.user_info["user_id"])+"," +bundle_id+ ",'" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"')"
+                 instr="SELECT * FROM wallet WHERE user_id="+str(self.user_info["user_id"])
                  self.cur.execute(instr)
+                 record=self.cur.fetchone()
+                 currMoney=record[0]
+                 newMoney=float(currMoney)-float(price)
+                 if (newMoney<0):
+                     messagebox.showinfo("Warning", "Not enough money")
+                 else:
+                     instr="INSERT INTO user_buys_bundle (user_id, bundle_id, bundle_purchase_date) VALUES ("+str(self.user_info["user_id"])+"," +bundle_id+ ",'" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"')"
+                     self.cur.execute(instr)
+                     instr="UPDATE wallet SET money="+str(newMoney)+" WHERE user_id="+str(self.user_info["user_id"])
+                     self.cur.execute(instr)
               except:
-                  tk.messagebox.showinfo("Warning", "You already own this bundle")
-        
+                  messagebox.showinfo("Warning", "You already own this bundle")
     #TOOLBAR        
     def show_buyPlan(self):
         frame=self.frames["Store"]

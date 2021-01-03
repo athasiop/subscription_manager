@@ -6,6 +6,7 @@ Created on Sun Dec 27 23:13:33 2020
 """
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 class LoginPage(tk.Frame):
     
@@ -15,6 +16,14 @@ class LoginPage(tk.Frame):
         self.user_info=user_info
         self.frames = frames
         
+        imgSize = 25, 25
+        imgLogin = Image.open("login.png")
+        imgSignUp = Image.open("signup.png")
+        newImgLogin = imgLogin.resize(imgSize) 
+        newImgSignUp = imgSignUp.resize(imgSize)
+        self.photoLogin = ImageTk.PhotoImage(newImgLogin)
+        self.photoSignUp = ImageTk.PhotoImage(newImgSignUp)
+        
         tk.Label(self,text = "Enter Your Username").grid(row=0,column=0)
         entry_username = tk.Entry(self)
         entry_username.grid(row=0,column=1)
@@ -23,10 +32,10 @@ class LoginPage(tk.Frame):
         entry_email = tk.Entry(self)
         entry_email.grid(row=1,column=1)
         
-        login_button = ttk.Button(self,text="Log In",command=lambda:self.login(str(entry_username.get()),str(entry_email.get())))
+        login_button = ttk.Button(self,text="Log In", image = self.photoLogin, compound = tk.RIGHT, command=lambda:self.login(str(entry_username.get()),str(entry_email.get())))
         login_button.grid(row=2,column=0)
         
-        sign_up_button = ttk.Button(self,text="Sign Up",command = lambda:self.sign_up())
+        sign_up_button = ttk.Button(self,text="Sign Up", image = self.photoSignUp, compound = tk.RIGHT, command = lambda:self.sign_up())
         sign_up_button.grid(row=2,column=1)
     def login(self,username,email):
         try:

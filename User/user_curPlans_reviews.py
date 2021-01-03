@@ -10,6 +10,7 @@ import datetime
 import tkinter as tk
 from createToolbar import createToolbar
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 
 
@@ -22,6 +23,14 @@ class CurrentPlans(tk.Frame):
             self.user_info = user_info
             self.frames = frames
             self.cur = cur
+            
+            imgSize = 20, 20
+            imgCancel = Image.open("cancel.png")
+            imgReview = Image.open("review.png")
+            newImgCancel = imgCancel.resize(imgSize) 
+            newImgReview = imgReview.resize(imgSize)
+            self.photoCancel = ImageTk.PhotoImage(newImgCancel)
+            self.photoReview = ImageTk.PhotoImage(newImgReview)
             
             self.treePlans = ttk.Treeview(self)
             self.treePlans["columns"] = ("one","two","three","four")
@@ -50,13 +59,13 @@ class CurrentPlans(tk.Frame):
             
          
             self.lblActPlans = tk.Label(self, text = "Active Subscriptions")  
-            self.btnReviewPlan = tk.Button(self, text = "Review Service", 
+            self.btnReviewPlan = tk.Button(self, text = "Review Service", image = self.photoReview, compound = tk.RIGHT,
                                        command = lambda: self.checkReview())
             
             self.lblReviews = tk.Label(self, text = "Reviews (double click to see comment or update review)")
             
             
-            self.btnCancelPlan = tk.Button(self, text = "Cancel Plan", command = lambda: self.checkCancel())
+            self.btnCancelPlan = tk.Button(self, text = "Cancel Plan", image = self.photoCancel, compound = tk.RIGHT, command = lambda: self.checkCancel())
             
             self.treeReviews.bind("<Double-Button-1>", self.pop_review_window)
         
@@ -67,8 +76,8 @@ class CurrentPlans(tk.Frame):
             self.btnCancelPlan.grid(row = 3, column = 0)
             
             self.btnReviewPlan.grid(row = 4, column = 0)
-            self.lblReviews.grid(row = 5, column = 0, stick = "nsew")
-            self.treeReviews.grid(row = 6, column = 0, stick = "nsew")
+            self.lblReviews.grid(row = 1, column = 2, stick = "nsew")
+            self.treeReviews.grid(row = 2, column = 2, stick = "nsew")
             
             createToolbar(self, frames)
             

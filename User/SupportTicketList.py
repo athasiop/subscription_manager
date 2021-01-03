@@ -19,11 +19,9 @@ class SupportTicketList(tk.Frame):
         
         imgSize = 30, 30
         imgNewTicket = Image.open("newTicket.png")
-        #imgPaymentMethods = Image.open("payment.png")
-        newImgNewTicket = imgNewTicket.resize(imgSize)
-        #newImgPaymentMethods = imgPaymentMethods.resize(imgSize)
+        newImgNewTicket = imgNewTicket.resize(imgSize) 
         self.photoAddImgNewTicket = ImageTk.PhotoImage(newImgNewTicket)
-        #self.photoPaymentMethods = ImageTk.PhotoImage(newImgPaymentMethods)
+        
         
         self.labels = []
         tk.Label(self,text="Questions").grid(row=1,column=0)

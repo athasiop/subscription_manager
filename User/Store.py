@@ -50,7 +50,7 @@ class Store(tk.Frame):
         frame.tkraise()
         
     def show_buyPlan(self):
-        frame=self.frames["BuyPlan"]
+        frame=self.frames["Store"]
         frame.tkraise()
     
     def profilePage(self):

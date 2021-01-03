@@ -46,11 +46,13 @@ class CurrentPlans(tk.Frame):
             self.treePlans.heading("three", text = "Purchase Date",anchor = tk.W)
             self.treePlans.heading("four", text = "Bundle",anchor = tk.W)
             
+            
             self.treeReviews = ttk.Treeview(self)
             self.treeReviews["columns"] = ("one","two")
             self.treeReviews.column("#0", width = 150, minwidth = 150, stretch = tk.NO)
             self.treeReviews.column("one", width = 50, minwidth = 50, stretch = tk.NO)
             self.treeReviews.column("two", width = 80, minwidth = 80)
+            
             
             self.treeReviews.heading("#0",text = "Service",anchor = tk.W)
             self.treeReviews.heading("one", text = "Rating",anchor = tk.W)
@@ -82,6 +84,9 @@ class CurrentPlans(tk.Frame):
             createToolbar(self, frames)
             
         def show(self):
+            
+            self.treePlans.delete(*self.treePlans.get_children())
+            self.treeReviews.delete(*self.treeReviews.get_children())
             
             sqlPlan = "SELECT subscription_plan.service_name, plan_price, plan_type, plan_purchase_date from " +\
             "user_buys_subscription_plan join subscription_plan " +\

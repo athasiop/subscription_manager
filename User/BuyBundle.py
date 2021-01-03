@@ -80,7 +80,7 @@ class BuyBundle(tk.Frame):
          curReview = self.tree.focus()
          selectedRow = self.tree.item(curReview)
          bundle_id=str(selectedRow).split(", ")[0].split("'")[3]
-         MsgBox = tk.messagebox.askquestion ('Attention','Are you sure you want to buy this plan?')
+         MsgBox = tk.messagebox.askquestion ('Attention','Are you sure you want to buy this bundle?')
          if MsgBox=='yes':
               try:
                  instr="INSERT INTO user_buys_bundle (user_id, bundle_id, bundle_purchase_date) VALUES ("+str(self.user_info["user_id"])+"," +bundle_id+ ",'" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")+"')"

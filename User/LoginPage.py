@@ -19,24 +19,26 @@ class LoginPage(tk.Frame):
         imgSize = 25, 25
         imgLogin = Image.open("login.png")
         imgSignUp = Image.open("signup.png")
+        
         newImgLogin = imgLogin.resize(imgSize) 
         newImgSignUp = imgSignUp.resize(imgSize)
         self.photoLogin = ImageTk.PhotoImage(newImgLogin)
         self.photoSignUp = ImageTk.PhotoImage(newImgSignUp)
         
-        tk.Label(self,text = "Enter Your Username").grid(row=0,column=0)
-        entry_username = tk.Entry(self)
-        entry_username.grid(row=0,column=1)
         
-        tk.Label(self,text = "Enter Your Email").grid(row=1,column=0)
+        tk.Label(self,text = "Enter Your Username").pack()
+        entry_username = tk.Entry(self)
+        entry_username.pack()
+        
+        tk.Label(self,text = "Enter Your Email").pack()
         entry_email = tk.Entry(self)
-        entry_email.grid(row=1,column=1)
+        entry_email.pack()
         
         login_button = ttk.Button(self,text="Log In", image = self.photoLogin, compound = tk.RIGHT, command=lambda:self.login(str(entry_username.get()),str(entry_email.get())))
-        login_button.grid(row=2,column=0)
+        login_button.pack()
         
         sign_up_button = ttk.Button(self,text="Sign Up", image = self.photoSignUp, compound = tk.RIGHT, command = lambda:self.sign_up())
-        sign_up_button.grid(row=2,column=1)
+        sign_up_button.pack()
     def login(self,username,email):
         try:
             instr = "SELECT * FROM user WHERE user_name='"+username+"' AND email='"+email+"'"
@@ -60,7 +62,7 @@ class LoginPage(tk.Frame):
             print("Issue with tinker: "+str(e))
         except TypeError as e:
             self.user_not_found_label = tk.Label(self,text="User Not Found",bg="red")
-            self.user_not_found_label.grid(row=3,column=0)
+            self.user_not_found_label.pack()
             self.after(3000, self.clear_label)
             print("Error: "+str(e))
     def clear_label(self):

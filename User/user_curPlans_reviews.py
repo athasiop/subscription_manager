@@ -260,7 +260,6 @@ class CurrentPlans(tk.Frame):
             bundleID = bundleID[0 : -1]
             planType = str(selectedRow).split(", ")[3]
             planType = planType[1:]
-            print(bundleID)
             if not bundleID == "' '":
                 messagebox.showinfo(title = "Canceling from bundle", message = "You cannot cancel a plan that was included in a purchased bundle")
             else:

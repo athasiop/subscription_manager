@@ -3,34 +3,43 @@ from tkinter import ttk
 import datetime
 from createToolbar import createToolbar
 from tkinter import messagebox
+from PIL import Image, ImageTk
 
 class BuyPlan(tk.Frame): 
       
-    def __init__(self, parent, cur,user_info, frames):
-        tk.Frame.__init__(self,parent)
-        self.cur=cur
-        self.frames=frames
+    def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+        tk.Frame.__init__(self, parent)        
         self.user_info = user_info
+        self.cur = cur
+        self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
+        
+        imgSize = 25, 25
+        imgSearch = Image.open(r"Images\search.png")
+        newImgSearch= imgSearch.resize(imgSize)
+        self.photoSearch = ImageTk.PhotoImage(newImgSearch)
         
         createToolbar(self, frames)
         show_all_button=tk.Button(self,text="Show all plans", command=lambda: self.showPlans(""))
-        show_all_button.grid(row=1, column=0)
-        tk.Label(self, text="Enter service name").grid(row=2,column=0)
+        show_all_button.grid(row=1, column=2,sticky = tk.N, pady = 120)
+        tk.Label(self, text="Search service name").grid(row=1,column=2,sticky = tk.N,pady = 30)
         search_bar=tk.Entry(self)
-        search_bar.grid(row=2,column=1)
-        show_searched_button=tk.Button(self,text="Search for plans", command=lambda: self.showPlans(search_bar.get()))
-        show_searched_button.grid(row=3, column=0)
+        search_bar.grid(row=1,column=2,sticky = tk.N, pady = 50)
+        show_searched_button=tk.Button(self,text="Search", image = self.photoSearch, compound = tk.RIGHT,command=lambda: self.showPlans(search_bar.get()))
+        show_searched_button.grid(row=1, column=2,sticky = tk.N, pady = 80)
+        self.showPlans("")
         
     def showPlans(self,input):
         try:
             instr="SELECT * FROM subscription_plan WHERE service_name LIKE '%"+input+"%'"
             self.cur.execute(instr)
             self.tree=ttk.Treeview(self)
-            self.tree.grid(row=4)
+            self.tree.grid(row=1)
             verscrlbar = ttk.Scrollbar(self,  
                             orient ="vertical",  
                             command = self.tree.yview)
-            verscrlbar.grid(row=4, column=1)
+            verscrlbar.grid(row=1, column=1)
             self.tree.configure(xscrollcommand = verscrlbar.set)
             # Defining number of columns 
             self.tree["columns"] = ("1", "2", "3", "4", "5") 
@@ -98,8 +107,8 @@ class BuyPlan(tk.Frame):
         frame.tkraise()
         
     def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
         
     def profilePage(self):
         frame=self.frames["UserProfilePage"]

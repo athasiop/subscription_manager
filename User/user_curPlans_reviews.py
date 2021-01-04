@@ -11,15 +11,17 @@ from tkinter import messagebox
 
         
 class CurrentPlans(tk.Frame):
-        def __init__(self, parent, cur, user_info, frames):
-            tk.Frame.__init__(self, parent)
+        def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+            tk.Frame.__init__(self, parent)        
             self.user_info = user_info
-            self.frames = frames
             self.cur = cur
+            self.frames = frames
+            self.loginWindow = loginWindow
+            self.mainWindow = mainWindow
             
             imgSize = 20, 20
-            imgCancel = Image.open("cancel.png")
-            imgReview = Image.open("review.png")
+            imgCancel = Image.open(r"Images\cancel.png")
+            imgReview = Image.open(r"Images\review.png")
             newImgCancel = imgCancel.resize(imgSize) 
             newImgReview = imgReview.resize(imgSize)
             self.photoCancel = ImageTk.PhotoImage(newImgCancel)
@@ -186,6 +188,7 @@ class CurrentPlans(tk.Frame):
             updateReviewWindow.title("Update review")
             updateReviewWindow.geometry("500x500")
            
+            
             textUpdateReview = tk.Text(updateReviewWindow)
             sqlReviewComment = "Select comment from user_reviews_service where user_id = " + str(self.user_info["user_id"]) + " and service_name = '" + serviceName + "'"
             self.cur.execute(sqlReviewComment)
@@ -200,6 +203,7 @@ class CurrentPlans(tk.Frame):
             btnDeleteReview = tk.Button(updateReviewWindow, text = "Delete Review", command = lambda: self.deleteReview(serviceName, updateReviewWindow))
             updateReviewRating = ttk.Combobox(updateReviewWindow, width = 10, textvariable =  tk.StringVar, state = 'readonly')    
             updateReviewRating['values'] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+            tk.Label(text = "Comment").pack()
             textUpdateReview.pack()
             updateReviewRating.pack()
             btnUpdateReview.pack()
@@ -339,8 +343,8 @@ class CurrentPlans(tk.Frame):
             frame.tkraise()
             
         def logout(self):
-            frame = self.frames["LoginPage"]
-            frame.tkraise()
+            self.mainWindow.destroy()
+            self.loginWindow.deiconify()
             
         def profilePage(self):
             frame=self.frames["UserProfilePage"]

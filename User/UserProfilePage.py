@@ -7,19 +7,21 @@ from PIL import Image, ImageTk
 
 class UserProfilePage(tk.Frame):
     
-    def __init__(self,parent,cur,user_info,frames):         
+    def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
         tk.Frame.__init__(self, parent)        
         self.user_info = user_info
         self.cur = cur
         self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
         
         
         createToolbar(self, frames)
         
         imgSize = 20, 20
-        imgEdit = Image.open("edit.png")
-        imgDelete = Image.open("delete.png")
-        imgUpdate = Image.open("update.png")
+        imgEdit = Image.open(r"Images\edit.png")
+        imgDelete = Image.open(r"Images\delete.png")
+        imgUpdate = Image.open(r"Images\update.png")
         newImgEdit = imgEdit.resize(imgSize)
         newImgDelete = imgDelete.resize(imgSize)
         newImgUpdate = imgUpdate.resize(imgSize)
@@ -46,6 +48,8 @@ class UserProfilePage(tk.Frame):
         self.update_button = ttk.Button(self,text="Update Info",image = self.photoUpdate, compound = tk.RIGHT, command=self.update_info)
         self.update_button.configure(state="disabled")
         self.update_button.grid(row=8,column=2, pady = 20, sticky = tk.W)
+        
+        self.UpdateProfile()
         
 #Show money        
     def show(self):
@@ -94,8 +98,8 @@ class UserProfilePage(tk.Frame):
         frame.tkraise()
         
     def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
         
     def profilePage(self):
         frame=self.frames["UserProfilePage"]
@@ -114,8 +118,8 @@ class UserProfilePage(tk.Frame):
         try:
             self.cur.execute(instr)
             
-            self.update_success = tk.Label(self,text="Update Successfull",bg="green")
-            self.update_success.grid(row=7,column=2)
+            self.update_success = tk.Label(self,text="Update Successfull",bg="SpringGreen2")
+            self.update_success.grid(row=9,column=2,sticky=tk.W)
             self.after(3000, self.clear_label)
         except:         
             print("SQL issue")

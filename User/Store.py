@@ -2,11 +2,13 @@ import tkinter as tk
 from createToolbar import createToolbar
 
 class Store(tk.Frame):    
-    def __init__(self,parent,cur,user_info,frames):
-        tk.Frame.__init__(self, parent)
-        self.cur = cur
-        self.frames=frames
+    def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+        tk.Frame.__init__(self, parent)        
         self.user_info = user_info
+        self.cur = cur
+        self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
         
         createToolbar(self, frames)
         # label=tk.Label(self, text="MAIN MENU")
@@ -39,8 +41,8 @@ class Store(tk.Frame):
         frame.tkraise()
         
     def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
         
     def show_buyPlan(self):
         frame=self.frames["Store"]

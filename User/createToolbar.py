@@ -11,11 +11,11 @@ from PIL import Image, ImageTk
 def createToolbar(self, frames):
     toolbarFrame = tk.Frame(self, bg = "lightgrey", borderwidth = 10)
     imgSize = 35, 35
-    imgLogOut = Image.open("log-out.png")
-    imgProfile = Image.open("profile.png")
-    imgWallet = Image.open("wallet.png")
-    imgStore = Image.open("store.png")
-    imgTicket = Image.open("ticket.png")
+    imgLogOut = Image.open(r"Images\log-out.png")
+    imgProfile = Image.open(r"Images\profile.png")
+    imgWallet = Image.open(r"Images\wallet.png")
+    imgStore = Image.open(r"Images\store.png")
+    imgTicket = Image.open(r"Images\ticket.png")
     newImgLogOut = imgLogOut.resize(imgSize)
     newImgProfile = imgProfile.resize(imgSize)
     newImgWallet = imgWallet.resize(imgSize)
@@ -33,11 +33,8 @@ def createToolbar(self, frames):
     ttk.Button(toolbarFrame,text = "Log Out",image = toolbarFrame.photoLogout, compound = tk.RIGHT, command=self.logout).grid(row=0,column=4, padx = 50)
     toolbarFrame.grid(row = 0, column = 0, rowspan = 1, columnspan = 5)
     
-    def main_menu(self): 
-        frame = self.frames["Wallet"]
-        frame.grid(row = 1, column = 0)
-        frame.show()
-        frame.tkraise()
+    def main_menu(self):
+        self.loginWindow.deiconify()
     
     def support_tickets(self):
         frame = self.frames["SupportTicketList"]

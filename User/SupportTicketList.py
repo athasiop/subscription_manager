@@ -5,22 +5,25 @@ from PIL import Image, ImageTk
 
 class SupportTicketList(tk.Frame):
      
-     def __init__(self,parent,cur,user_info,frames):
-        tk.Frame.__init__(self, parent)
+     def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+        tk.Frame.__init__(self, parent)        
         self.user_info = user_info
-        self.frames = frames
         self.cur = cur
+        self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
         
         imgSize = 30, 30
-        imgNewTicket = Image.open("newTicket.png")
+        imgNewTicket = Image.open(r"Images\newTicket.png")
         newImgNewTicket = imgNewTicket.resize(imgSize) 
         self.photoAddImgNewTicket = ImageTk.PhotoImage(newImgNewTicket)
         
         
         self.labels = []
-        tk.Label(self,text="Questions").grid(row=1,column=0)
-        tk.Label(self,text="Answers").grid(row=1,column=1)
+        tk.Label(self,text="Questions",font='Helvetica 12 bold').grid(row=1,column=0)
+        tk.Label(self,text="Answers",font='Helvetica 12 bold').grid(row=1,column=1, pady = 5)
         self.new_support_ticket_button = ttk.Button(self,text="New Ticket", image = self.photoAddImgNewTicket, compound = tk.RIGHT, command = self.send_support_ticket)
+        
         createToolbar(self, frames)
 
      def RefreshList(self):
@@ -28,8 +31,9 @@ class SupportTicketList(tk.Frame):
         self.labels.clear()
         k = self.select_support_ticket("question",0)
         self.select_support_ticket("answer",1)
+        self.new_support_ticket_button.grid(row=k, column = 2, pady = 10)
                 
-        self.new_support_ticket_button.grid(row=k)
+        
         
      def select_support_ticket(self,returnval,col):
               
@@ -67,8 +71,8 @@ class SupportTicketList(tk.Frame):
         frame.tkraise()
         
      def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
         
      def show_buyPlan(self):
         frame=self.frames["Store"]

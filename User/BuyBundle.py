@@ -6,15 +6,18 @@ from createToolbar import createToolbar
 
 class BuyBundle(tk.Frame): 
       
-    def __init__(self, parent, cur,user_info, frames):
-        tk.Frame.__init__(self,parent)
-        self.cur=cur
-        self.frames=frames
+    def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+        tk.Frame.__init__(self, parent)        
         self.user_info = user_info
+        self.cur = cur
+        self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
         
         createToolbar(self, frames)
-        show_all_button=tk.Button(self,text="Show bundles", command=lambda: self.showPlans(""))
-        show_all_button.grid(row=1, column=0)
+        #show_all_button=tk.Button(self,text="Show bundles", command=lambda: self.showPlans(""))
+        #show_all_button.grid(row=1, column=0)
+        self.showPlans("")
 
         
     def showPlans(self,input):
@@ -22,11 +25,11 @@ class BuyBundle(tk.Frame):
             instr="SELECT * FROM bundle JOIN bundle_price ON bundle_price.bundle_id=bundle.bundle_id"
             self.cur.execute(instr)
             self.tree=ttk.Treeview(self)
-            self.tree.grid(row=4)
+            self.tree.grid(row=1, pady = 10)
             verscrlbar = ttk.Scrollbar(self,  
                             orient ="vertical",  
                             command = self.tree.yview)
-            verscrlbar.grid(row=4, column=1)
+            verscrlbar.grid(row=1, column=1)
             self.tree.configure(xscrollcommand = verscrlbar.set)
             # Defining number of columns 
             self.tree["columns"] = ("1", "2", "3", "4") 
@@ -108,8 +111,8 @@ class BuyBundle(tk.Frame):
         frame.tkraise()
         
     def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
         
     def profilePage(self):
         frame=self.frames["UserProfilePage"]

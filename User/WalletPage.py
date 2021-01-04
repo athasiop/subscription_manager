@@ -5,19 +5,21 @@ from createToolbar import createToolbar
 
 class WalletPage(tk.Frame):
 
-     def __init__(self, parent, cur,user_info, frames):
-        tk.Frame.__init__(self, parent)
-        self.cur = cur
-        self.frames=frames
+     def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+        tk.Frame.__init__(self, parent)        
         self.user_info = user_info
+        self.cur = cur
+        self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
 
 
         createToolbar(self, frames)
-        tk.Label(self,text="How much money do you want to add?").grid(row=2,column=1)
+        tk.Label(self,text="How much money do you want to add?").grid(row=2,column=1, pady = 100)
         moneyToAdd=tk.Entry(self)
         moneyToAdd.grid(row=2,column=2)
         add_button=ttk.Button(self, text="Add", command=lambda: self.addMoney(str(moneyToAdd.get())))
-        add_button.grid(row=3,column=2)
+        add_button.grid(row=2,column=3)
 
 
 
@@ -47,8 +49,8 @@ class WalletPage(tk.Frame):
         frame.tkraise()
 
      def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
 
      def profilePage(self):
         frame=self.frames["UserProfilePage"]

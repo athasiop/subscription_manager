@@ -3,26 +3,31 @@ from createToolbar import createToolbar
 from PIL import Image, ImageTk
 
 class Wallet(tk.Frame):    
-    def __init__(self,parent,cur,user_info,frames):
-        tk.Frame.__init__(self, parent)
-        self.cur = cur
-        self.frames=frames
+    def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+        tk.Frame.__init__(self, parent)        
         self.user_info = user_info
+        self.cur = cur
+        self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
         
         imgSize = 30, 30
-        imgAddMoney = Image.open("addMoney.png")
-        imgPaymentMethods = Image.open("payment.png")
+        imgAddMoney = Image.open(r"Images\addMoney.png")
+        imgPayment= Image.open(r"Images\payment.png")
+        #imgPaymentMethods = Image.open(r"Images\paymentMethods.png")
         newImgAddMoney = imgAddMoney.resize(imgSize)
-        newImgPaymentMethods = imgPaymentMethods.resize(imgSize)
+        newImgPayment= imgPayment.resize(imgSize)
+        #newImgPaymentMethods = imgPaymentMethods.resize((360, 180))
         self.photoAddMoney = ImageTk.PhotoImage(newImgAddMoney)
-        self.photoPaymentMethods = ImageTk.PhotoImage(newImgPaymentMethods)
+        self.photoPayment = ImageTk.PhotoImage(newImgPayment)
+        #self.photoPaymenMethods = ImageTk.PhotoImage(newImgPaymentMethods)
         
         createToolbar(self, frames)
         # label=tk.Label(self, text="MAIN MENU")
         # label.grid(row=0, column=1,pady=10, padx=10)
         add_money_button=tk.Button(self, text="Add Money", image = self.photoAddMoney, compound = tk.RIGHT, command=lambda: self.addMoney())
         add_money_button.grid(row=1, column=1,pady=10, padx=10)
-        payment_method_button=tk.Button(self, text="Payment Methods", image = self.photoPaymentMethods, compound = tk.RIGHT,command=lambda: self.show_PM())
+        payment_method_button=tk.Button(self, text="Payment Methods", image = self.photoPayment, compound = tk.RIGHT,command=lambda: self.show_PM())
         payment_method_button.grid(row=2, column=1,pady=10, padx=10)
         # buy_plan_button=tk.Button(self, text="Buy Plans", command=lambda: self.show_buyPlan())
         # buy_plan_button.grid(row=3,column=1,pady=10,padx=10)
@@ -59,8 +64,8 @@ class Wallet(tk.Frame):
         frame.tkraise()
         
     def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
         
     def show_buyPlan(self):
         frame=self.frames["Store"]

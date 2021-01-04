@@ -3,11 +3,13 @@ from createToolbar import createToolbar
 
 class PaymentMethod(tk.Frame):
     
-    def __init__(self, parent, cur,user_info, frames):
-        tk.Frame.__init__(self,parent)
-        self.cur=cur
-        self.frames=frames
+    def __init__(self,parent,cur,user_info,frames,loginWindow,mainWindow):         
+        tk.Frame.__init__(self, parent)        
         self.user_info = user_info
+        self.cur = cur
+        self.frames = frames
+        self.loginWindow = loginWindow
+        self.mainWindow = mainWindow
 
         show_button=tk.Button(self, text="Show Payment Methods", command=lambda: self.show())
         show_button.grid(row=1)
@@ -46,8 +48,8 @@ class PaymentMethod(tk.Frame):
         frame.tkraise()
         
     def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.tkraise()
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
         
     def show_buyPlan(self):
         frame=self.frames["Store"]

@@ -15,6 +15,7 @@ class tkinterApp(tk.Tk):
         self.cur=cur
         self.user_info=user_info
         self.geometry("420x420")
+        self.resizable(False, False)
         # creating a container 
         container = tk.Frame(self)   
         container.pack(side = "top", fill = "both", expand = True)  

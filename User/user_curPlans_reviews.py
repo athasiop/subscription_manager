@@ -203,7 +203,7 @@ class CurrentPlans(tk.Frame):
             btnDeleteReview = tk.Button(updateReviewWindow, text = "Delete Review", command = lambda: self.deleteReview(serviceName, updateReviewWindow))
             updateReviewRating = ttk.Combobox(updateReviewWindow, width = 10, textvariable =  tk.StringVar, state = 'readonly')    
             updateReviewRating['values'] = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-            tk.Label(text = "Comment").pack()
+            tk.Label(updateReviewWindow, text = "Comment").pack()
             textUpdateReview.pack()
             updateReviewRating.pack()
             btnUpdateReview.pack()

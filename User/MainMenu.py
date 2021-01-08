@@ -26,6 +26,7 @@ class MainMenu(tk.Toplevel):
         self.cur=cur
         self.user_info=user_info
         self.loginWindow = loginWindow
+        self.resizable(False, False)
         self.protocol("WM_DELETE_WINDOW", lambda: self.loginWindow.destroy())
         # creating a container 
         container = tk.Frame(self)   

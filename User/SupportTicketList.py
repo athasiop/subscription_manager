@@ -18,7 +18,8 @@ class SupportTicketList(tk.Frame):
         newImgNewTicket = imgNewTicket.resize(imgSize) 
         self.photoAddImgNewTicket = ImageTk.PhotoImage(newImgNewTicket)
         
-        tk.Label(self, text = "Last 4 support tickets", font = 'Helvetica 10 italic').place(x = 380, y = 83)
+        self.lastLabel = tk.Label(self, text = "Last 4 support tickets", font = 'Helvetica 10 italic')
+        self.lastLabel.place(x = 180, y = 83)
         self.labels = []
         tk.Label(self,text="Questions",font='Helvetica 12 bold').grid(row=1,column=0)
         tk.Label(self,text="Answers",font='Helvetica 12 bold').grid(row=1,column=1, pady = 5)
@@ -32,14 +33,13 @@ class SupportTicketList(tk.Frame):
         self.select_support_ticket("question",0)
         self.select_support_ticket("answer",1)
         
-                
-        
-        
      def select_support_ticket(self,returnval,col):
               
         instr = "SELECT "+returnval+" FROM support_ticket WHERE user_id='"+str(self.user_info["user_id"])+"'"
         self.cur.execute(instr)
         temp=self.cur.fetchall()
+        if(len(temp) > 0):
+            self.lastLabel.place(x = 380, y = 83)
         k=4
         for i in temp[len(temp)-4:len(temp)]:
             q = str(i)            

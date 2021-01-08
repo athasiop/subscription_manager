@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+from createToolbar import createToolbar
 
 class PaymentMethodPage(tk.Frame):    
     
@@ -11,14 +12,14 @@ class PaymentMethodPage(tk.Frame):
 
         paymentMethods=['Credit Card', 'Debit Card', 'Paypal', 'Paysafe']
        
-        
+        createToolbar(self, frames)
         self.vars = []
         for i in range(0,len(paymentMethods)):
             var=tk.IntVar()
-            tk.Checkbutton(self, text=paymentMethods[i], variable=var).grid(row=i)
+            tk.Checkbutton(self, text=paymentMethods[i], variable=var).grid(row=i+1)
             self.vars.append(var)
             
-        tk.Button(self, text="Add Payment Method", command=lambda: self.addPayment()).grid(row=len(paymentMethods)+1)
+        tk.Button(self, text="Add Payment Method", command=lambda: self.addPayment()).grid(row=len(paymentMethods)+2)
         
     def state(self):
       return map((lambda var: var.get()), self.vars)
@@ -40,3 +41,25 @@ class PaymentMethodPage(tk.Frame):
         frame=self.frames["PaymentMethod"]
         frame.show() 
         frame.tkraise() 
+        
+    def main_menu(self):        
+        frame = self.frames["Wallet"]
+        frame.show()
+        frame.tkraise()
+    
+    def support_tickets(self):
+        frame = self.frames["SupportTicketList"]
+        frame.RefreshList()
+        frame.tkraise()
+        
+    def logout(self):
+        self.mainWindow.destroy()
+        self.loginWindow.deiconify()
+        
+    def show_buyPlan(self):
+        frame=self.frames["Store"]
+        frame.tkraise()
+    
+    def profilePage(self):
+        frame=self.frames["UserProfilePage"]
+        frame.tkraise()

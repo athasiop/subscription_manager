@@ -12,7 +12,7 @@ class ReviewsPage(tk.Frame):
         self.labels = []
         tk.Label(self,text="Comment",font=(20)).grid(row=0,column=0,padx=5)
         tk.Label(self,text="Rating",font=(20)).grid(row=0,column=1,padx=5)
-        tk.Label(self,text="Time Of Review",font=(20)).grid(row=0,column=2,padx=5)
+        tk.Label(self,text="Review Date",font=(20)).grid(row=0,column=2,padx=5)
         tk.Label(self,text="Average Rating",font=(20)).grid(row=0,column=3,padx=5)
         
     

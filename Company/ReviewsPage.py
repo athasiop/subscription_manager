@@ -1,12 +1,5 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 28 13:24:43 2020
-
-@author: Thanasis
-"""
 import tkinter as tk
 from tkinter import ttk
-import datetime
 
 class ReviewsPage(tk.Frame):
      

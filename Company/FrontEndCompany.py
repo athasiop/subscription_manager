@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 28 13:06:32 2020
-
-@author: Thanasis
-"""
 import pymysql as sql
 from tkinterApp import tkinterApp
 

@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 28 20:44:32 2020
-
-@author: Dimitris
-"""
-
-
 import tkinter as tk
 from tkinter import ttk
 import math

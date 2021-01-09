@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Dec 30 22:13:10 2020
-
-@author: johni
-"""
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk

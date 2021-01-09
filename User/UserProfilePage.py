@@ -31,17 +31,17 @@ class UserProfilePage(tk.Frame):
         
          
         #TODO Edit image
-        tk.Label(self,text="Username = ").grid(row=1, column = 0, pady = 30)
+        tk.Label(self,text="Username = ").grid(row=1, column = 0, pady = 10)
         tk.Button(self, image = self.photoEdit, command=self.editName).grid(row=1, column=2, sticky = tk.W)
         
-        tk.Label(self,text="Birth Date").grid(row=2, column = 0)
-        tk.Label(self,text="Email = ").grid(row=3, column = 0)
+        tk.Label(self,text="Birth Date").grid(row=2, column = 0,pady = 10)
+        tk.Label(self,text="Email = ").grid(row=3, column = 0,pady = 10)
         tk.Button(self, image = self.photoEdit, command=self.editEmail).grid(row=3, column=2, sticky = tk.W)
-        tk.Label(self,text="Country = ").grid(row=4, column = 0)
+        tk.Label(self,text="Country = ").grid(row=4, column = 0,pady = 10)
         tk.Button(self, image = self.photoEdit, command=self.editCountry).grid(row=4, column=2, sticky = tk.W)
-        tk.Label(self,text="Zip Code = ").grid(row=5, column = 0)
+        tk.Label(self,text="Zip Code = ").grid(row=5, column = 0,pady = 10)
         tk.Button(self, image = self.photoEdit, command=self.editZipCode).grid(row=5, column=2, sticky = tk.W)
-        tk.Label(self,text="Street = ").grid(row=6, column = 0)
+        tk.Label(self,text="Street = ").grid(row=6, column = 0,pady = 10)
         tk.Button(self, image = self.photoEdit, command=self.editStreet).grid(row=6, column=2, sticky = tk.W)
         ttk.Button(self,text="Delete Account",image = self.photoDelete, compound = tk.RIGHT,command=self.delete_user).grid(row=8,column=1, sticky = tk.W)
         ttk.Button(self,text="Show Current Plans",command=self.show_current_plans).grid(row=8,column=0)

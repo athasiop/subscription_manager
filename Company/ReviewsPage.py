@@ -56,10 +56,10 @@ class ReviewsPage(tk.Frame):
                 textT.insert(tk.END, q)  
                 textT.config(state=tk.DISABLED)
                 self.labels.append(textT)
-                self.labels[-1].grid(row = k, column = col,padx=5) 
+                self.labels[-1].grid(row = k, column = col,padx=5,pady=5) 
             k=k+1
         if returnval=="rating":
-            tk.Label(self,text=str(round(self.avg_rating,2)),font=("Calibri", 30)).grid(row=1,column=3)
+            tk.Label(self,text=str(round(self.avg_rating,2)),font=("Calibri", 24)).grid(row=1,column=3)
         return k
      def select_review_time(self,col):
             

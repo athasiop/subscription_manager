@@ -51,7 +51,7 @@ class BuyBundle(tk.Frame):
                 record = self.cur.fetchone()
                 if record==None:
                     break
-                self.tree.insert("", 'end', "id"+str(record[0]),text=str(record[0]),values=(record[1],"", "", record[3]))                
+                self.tree.insert("", 'end', "id"+str(record[0]),text=str(record[0]),values=(record[1],"", "", round(record[3],2)))                
         except:
             print("SQL Problem")
          

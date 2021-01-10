@@ -50,7 +50,7 @@ class ReviewsPage(tk.Frame):
                 labelT = tk.Label(self,text=q)
                 self.labels.append(labelT)
                 self.labels[-1].grid(row = k, column = col,padx=5) 
-                self.avg_rating=(self.avg_rating+int(q))/k
+                self.avg_rating=(self.avg_rating+int(q))
             else:
                 textT = tk.Text(self, height = 2, width = 30)
                 textT.insert(tk.END, q)  
@@ -58,6 +58,7 @@ class ReviewsPage(tk.Frame):
                 self.labels.append(textT)
                 self.labels[-1].grid(row = k, column = col,padx=5,pady=5) 
             k=k+1
+        self.avg_rating = self.avg_rating/(k-1)
         if returnval=="rating":
             tk.Label(self,text=str(round(self.avg_rating,2)),font=("Calibri", 24)).grid(row=1,column=3)
         return k

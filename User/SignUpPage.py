@@ -92,7 +92,7 @@ class SignUpPage(tk.Frame):
                 self.user_not_found_label.pack()
                 
                 self.after(5000, self.clear_label)
-            elif (not (strcheck[4]=="/" or strcheck[4]=="-")) or strcheck.count("/")!=2:           
+            elif (not (strcheck[4]=="/" or strcheck[4]=="-")):           
                 self.user_not_found_label = tk.Label(self,text="Wrong birth date format.\n Correct example:1992/9/21",bg="firebrick1")
                 self.user_not_found_label.pack()
                 self.after(5000, self.clear_label)

@@ -1,3 +1,3 @@
--To open the app locate the exe file on /User/SubscriptionManagerApplication/SubscriptionManager.exe
--If that doesn't work you will need to to run the sql files given but also change the ip address from the /User/SubscriptionManager.py to your local connection and run the SubscriptionManager.py file
+-To open the app locate the exe file on /User/SubscriptionManagerApplication/SubscriptionManager.exe \n
+-If that doesn't work you will need to to run the sql files given but also change the ip address from the /User/SubscriptionManager.py to your local connection and run the SubscriptionManager.py file\n
 -There is also an early build of the company side of the app. Feel free to check it out! (Use "Nietflix" or "Sportifu" as your login credential for the company app)

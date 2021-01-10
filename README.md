@@ -1,14 +1,3 @@
-# subscription_manager
-HOW TO EXECUTE USER APP-2 WAYS:
-1) OPEN THE EXECUTABLE (NAME) FILE, CONNECT TO THE APP VIA LOGIN OR SIGN-UP WITH A NEW ACC
-(THIS MAY NOT WORK IF THE GOOGLE CLOUD IS NOT CONNECTED)
-
-2)i)RUN THE SQL DUMP AND THE USERS DUMP (THE .SQL SCRIPTS)
-  ii)OPEN THE EXECUTABLE (NAME) FILE, CONNECT TO THE APP VIA LOGIN OR SIGN-UP WITH A NEW ACC
-  (IF CONNECTION WITH CLOUD DOESN'T WORK FOR ANY REASON, YOU CAN RUN IT LOCALLY)
-
-WE ALSO MADE THE COMPANY APP AND YOU CAN RUN IT AS AN EXECUTABLE FILE WITH THE SAME WAY AS
-THE USER APP. 
-
-YOU CAN FIND THE CODE HERE: https://github.com/athasiop/subscription_manager/tree/masterPapas
-
+-To open the app locate the exe file on /User/SubscriptionManagerApplication/SubscriptionManager.exe  
+-If that doesn't work you will need to to run the sql files given but also change the ip address from the /User/SubscriptionManager.py to your local connection and run the SubscriptionManager.py file  
+-There is also an early build of the company side of the app. Feel free to check it out! (Use "Nietflix" or "Sportifu" as your login credential for the company app)  

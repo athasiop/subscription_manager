@@ -20,6 +20,8 @@ class SignUpPage(tk.Frame):
         self.e5 = tk.Entry(self)
         self.e6 = tk.Entry(self)
         
+        
+        
         tk.Label(self,text="Username").pack()
         self.e1.pack()
         tk.Label(self,text="Birth Date").pack()
@@ -48,8 +50,14 @@ class SignUpPage(tk.Frame):
         
         sign_up_button = ttk.Button(self,text="Sign Up", image = self.photoSignUp, compound = tk.RIGHT, command = self.sign_up)
         sign_up_button.pack()
-    
-   
+    def clear(self):
+        self.e1.delete(0, 'end')
+        self.e2.delete(0, 'end')
+        self.e3.delete(0, 'end')
+        self.e4.delete(0, 'end')
+        self.e5.delete(0, 'end')
+        self.e6.delete(0, 'end')
+        
     def login(self):
         frame = self.frames["LoginPage"]
         frame.tkraise()
@@ -74,8 +82,8 @@ class SignUpPage(tk.Frame):
                 self.cur.execute(instr)                
             except:
                 print("Can't find user_id")
-            
             self.loginWindow.withdraw()
+            self.loginWindow.show_frame("LoginPage")
             mainWindow = MainMenu(self.cur, self.user_info, self.loginWindow)
             mainWindow.mainloop()
         except:
@@ -84,7 +92,7 @@ class SignUpPage(tk.Frame):
                 self.user_not_found_label.pack()
                 
                 self.after(5000, self.clear_label)
-            elif (not (strcheck[4]=="/" or strcheck[4]=="-")):           
+            elif (not (strcheck[4]=="/" or strcheck[4]=="-")) or strcheck.count("/")!=2:           
                 self.user_not_found_label = tk.Label(self,text="Wrong birth date format.\n Correct example:1992/9/21",bg="firebrick1")
                 self.user_not_found_label.pack()
                 self.after(5000, self.clear_label)

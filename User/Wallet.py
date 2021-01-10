@@ -73,4 +73,5 @@ class Wallet(tk.Frame):
     
     def profilePage(self):
         frame=self.frames["UserProfilePage"]
+        frame.RefreshProfile()
         frame.tkraise()

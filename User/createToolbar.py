@@ -27,26 +27,4 @@ def createToolbar(self, frames):
     ttk.Button(toolbarFrame,text = "Log Out",image = toolbarFrame.photoLogout, compound = tk.RIGHT, command=self.logout).grid(row=0,column=4, padx = 50)
     toolbarFrame.grid(row = 0, column = 0, rowspan = 1, columnspan = 5)
     
-    def main_menu(self):
-        self.loginWindow.deiconify()
     
-    def support_tickets(self):
-        frame = self.frames["SupportTicketList"]
-        frame.grid(row = 1, column = 0)
-        frame.RefreshList()
-        frame.tkraise()
-        
-    def logout(self):
-        frame = self.frames["LoginPage"]
-        frame.grid(row = 1, column = 0)
-        frame.tkraise()
-        
-    def show_buyPlan(self):
-        frame=self.frames["Store"]
-        frame.grid(row = 1, column = 0)
-        frame.tkraise()
-    
-    def profilePage(self):
-        frame=self.frames["UserProfilePage"]
-        frame.grid(row = 1, column = 0)
-        frame.tkraise()

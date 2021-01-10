@@ -30,7 +30,7 @@ class UserProfilePage(tk.Frame):
         self.photoUpdate = ImageTk.PhotoImage(newImgUpdate)
         
          
-        #TODO Edit image
+        
         tk.Label(self,text="Username = ").grid(row=1, column = 0, pady = 10)
         tk.Button(self, image = self.photoEdit, command=self.editName).grid(row=1, column=2, sticky = tk.W)
         
@@ -50,7 +50,18 @@ class UserProfilePage(tk.Frame):
         self.update_button.grid(row=8,column=2, pady = 20, sticky = tk.W)
         
         self.UpdateProfile()
-        
+    def RefreshProfile(self):
+        info = "SELECT * FROM user WHERE user_id='"+str(self.user_info["user_id"])+"'"       
+        self.cur.execute(info)
+        record = self.cur.fetchone()
+        self.user_info["user_name"] = str(record[1])
+        self.user_info["birth_date"] = str(record[2])
+        self.user_info["email"] = str(record[4])
+        self.user_info["country"] = str(record[5])
+        self.user_info["zip_code"] = str(record[6])
+        self.user_info["street"] = str(record[7])
+        self.UpdateProfile()
+            
 #Show money        
     def show(self):
         try:
@@ -103,6 +114,7 @@ class UserProfilePage(tk.Frame):
         
     def profilePage(self):
         frame=self.frames["UserProfilePage"]
+        frame.RefreshProfile()
         frame.tkraise()
         
 #Update info        
@@ -128,7 +140,7 @@ class UserProfilePage(tk.Frame):
         self.e4.config(state='disabled')
         self.e5.config(state='disabled')
         self.e6.config(state='disabled')
-            
+        self.update_button.configure(state="disabled")
     def clear_label(self):
         self.update_success.grid_forget()
         
